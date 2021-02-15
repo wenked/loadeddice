@@ -72,7 +72,7 @@ const onChangeHandler = ( event: React.ChangeEvent<{}>, newValue:String | null)=
      </form>
 
 
-     {odds && <OddsTable  odds={odds}/>}
+     {odds && <OddsTable  odds={odds} setOdds={setOdds}/>}
 
     </div>
   );

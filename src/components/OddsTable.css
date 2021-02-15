@@ -1,0 +1,15 @@
+img {
+	width: 50px;
+	height: 50px;
+}
+
+a {
+	cursor: pointer;
+	color: white;
+}
+
+.champName {
+	text-align: justify;
+	font-weight: bolder;
+	margin-left: 5px;
+}

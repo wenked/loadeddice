@@ -6,27 +6,32 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { loadedDiceOdds } from '../utils/getOdds';
+import { getOddsOfDesiredChamps, loadedDiceOdds } from '../utils/getOdds';
 import Paper from '@material-ui/core/Paper';
+import './OddsTable.css'
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles({
     table: {
       minWidth: 650,
+      fontWeight:'bolder',
+      
     },
   });
 
 interface oddsTableProps {
     odds: loadedDiceOdds[]
+    setOdds: React.Dispatch<React.SetStateAction<loadedDiceOdds[] | undefined>>
 }
 
+//https://rerollcdn.com/characters/Skin/4.5/Kayle.png//
 
-
-const OddsTable:React.FC<oddsTableProps> = ({odds}) => {
+const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
     const classes = useStyles();
 
     return <div>
         <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
+            <Table size='small' className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Champion</TableCell>
@@ -45,7 +50,10 @@ const OddsTable:React.FC<oddsTableProps> = ({odds}) => {
                     {odds.map((champion,i) => (
                         <TableRow key={i}>
                               <TableCell component="th" scope="row">
-                                {champion.champion}
+                              <Button variant='text' onClick={() =>setOdds(getOddsOfDesiredChamps(champion.champion)) }>
+                                <img src={`https://rerollcdn.com/characters/Skin/4.5/${champion.champion.replace(/\s/g, '')}.png`}alt='champion icon'/>
+                                <div className='champName'>{champion.champion}</div>
+                                </Button>
                                 </TableCell>
                                 <TableCell align="right">{champion.level_1.toFixed(3)}</TableCell>
                                 <TableCell align="right">{champion.level_2.toFixed(3)}</TableCell>
