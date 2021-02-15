@@ -30,24 +30,20 @@ export interface loadedDiceOdds {
     let unitswithsametrait:Champion[][] = []
     UnitWithTrait[0].traits.forEach((trait) => {
       const champs = champions.filter((x) => x.traits.includes(trait))
-      
-      console.log(champs)
-      
-      unitswithsametrait.push(champs)
-      console.log(unitswithsametrait)
        
-      
-      
+      unitswithsametrait.push(champs)
+       
+          
     })
   
     
-    console.log('último console.log',_.flatten(unitswithsametrait))
+    
     return _.uniq(_.flatten(unitswithsametrait))
   }
   
   
   export const getOddsOfDesiredChamps = (desiredChamp:String) => { 
-    console.log('estou aqui')
+   
     const desiredChampObject = champions.filter(x => x.name === desiredChamp)[0]
     let champOddsArray: loadedDiceOdds[] = []
   
@@ -55,12 +51,12 @@ export interface loadedDiceOdds {
      ChampsWithSameTraitz.forEach((champ) => {
       
       const champs =_.groupBy(getUnitsWithSameTraits(champ.name),'cost')
-      console.log(champs,'champs') 
+   
       const getCosts = Object.keys(champs)
-      console.log(getCosts)
+   
       let oddsArray:Number[] = []
       LevelOdds.forEach((level,i) => { 
-        console.log('teste')
+        
           getCosts.forEach(cost => {
           if(Number(cost) === desiredChampObject.cost) {
             let champOdds:loadedDiceOdds = {
@@ -76,12 +72,12 @@ export interface loadedDiceOdds {
               level_9:1
             }
   
-            console.log('estou aquii')
+            
             let odds = level[Number(desiredChampObject.cost) - 1]/champs[Number(desiredChampObject.cost)].length
             
-            console.log(odds,champ.name)
+        
             oddsArray.push(odds)
-            console.log(oddsArray)
+           
             if(oddsArray.length === 9){
               champOdds.champion = champ.name
               champOdds.level_1 = oddsArray[0]
