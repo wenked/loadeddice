@@ -14,7 +14,7 @@ export interface loadedDiceOdds {
     level_9: Number,
   }
   
-  const LevelOdds = [[1,0,0,0,0],[1,0,0,0,0],[0.75,0.25,0,0,0],[0.55,0.30,0.15,0,0],[0.45,0.33,0.20,0.02,0],[0.35,0.35,0.25,0.05,0],[0.22,0.35,0.30,0.12,0.01],[15,25,35,20,5],[10,15,30,30,15]]
+  const LevelOdds = [[1,0,0,0,0],[1,0,0,0,0],[0.75,0.25,0,0,0],[0.55,0.30,0.15,0,0],[0.45,0.33,0.20,0.02,0],[0.35,0.35,0.25,0.05,0],[0.22,0.35,0.30,0.12,0.01],[0.15,0.25,0.35,0.20,0.05],[0.10,0.15,0.30,0.30,0.15]]
   
    
   
@@ -48,6 +48,7 @@ export interface loadedDiceOdds {
     let champOddsArray: loadedDiceOdds[] = []
   
     const ChampsWithSameTraitz = getUnitsWithSameTraits(desiredChamp)
+    console.log(ChampsWithSameTraitz,'same trait')
      ChampsWithSameTraitz.forEach((champ) => {
       
       const champs =_.groupBy(getUnitsWithSameTraits(champ.name),'cost')
@@ -75,8 +76,10 @@ export interface loadedDiceOdds {
             
             let odds = level[Number(desiredChampObject.cost) - 1]/champs[Number(desiredChampObject.cost)].length
             
-        
+            
+            
             oddsArray.push(odds)
+            
            
             if(oddsArray.length === 9){
               champOdds.champion = champ.name
@@ -89,11 +92,12 @@ export interface loadedDiceOdds {
               champOdds.level_7 = oddsArray[6]
               champOdds.level_8 = oddsArray[7]
               champOdds.level_9 = oddsArray[8]
-  
+              
+             
               champOddsArray.push(champOdds)
             }
           }
-  
+          
           
         })
        
@@ -104,6 +108,6 @@ export interface loadedDiceOdds {
       
   
     })
-    return champOddsArray
+    return _.sortBy(champOddsArray,'level_9').reverse()
   }
   

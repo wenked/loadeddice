@@ -11,6 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import './OddsTable.css'
 import { Button } from '@material-ui/core';
 
+const convertNumber = (num:Number) => {
+    return num > 1 ? `${num.toFixed(1)}%` : `${((Number(num) * 100).toFixed(1))}%`
+}
+
 const useStyles = makeStyles({
     table: {
       minWidth: 650,
@@ -55,15 +59,15 @@ const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
                                 <div className='champName'>{champion.champion}</div>
                                 </Button>
                                 </TableCell>
-                                <TableCell align="right">{champion.level_1.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_2.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_3.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_4.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_5.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_6.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_7.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_8.toFixed(3)}</TableCell>
-                                <TableCell align="right">{champion.level_9.toFixed(3)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_1)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_2)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_3)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_4)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_5)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_6)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_7)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_8)}</TableCell>
+                                <TableCell align="right">{convertNumber(champion.level_9)}</TableCell>
                                 
                         </TableRow>
                     ))}
@@ -72,6 +76,7 @@ const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
         </TableContainer>
     </div>
 }
+
 
 
 export default OddsTable;
