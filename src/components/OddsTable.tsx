@@ -11,17 +11,26 @@ import Paper from '@material-ui/core/Paper';
 import './OddsTable.css'
 import { Button } from '@material-ui/core';
 
+
 const convertNumber = (num:Number) => {
-    return num > 1 ? `${num.toFixed(1)}%` : `${((Number(num) * 100).toFixed(1))}%`
+    return `${((Number(num) * 100).toFixed(1))}%`
 }
 
+
 const useStyles = makeStyles({
-    table: {
-      minWidth: 650,
-      fontWeight:'bolder',
-      
+    root:{
+        color:'#4caf50'
     },
+    teste: {
+        color:'#ff5722'
+    },
+    table: {
+      fontWeight:'bold',
+    },
+  
   });
+
+
 
 interface oddsTableProps {
     odds: loadedDiceOdds[]
@@ -33,21 +42,22 @@ interface oddsTableProps {
 const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
     const classes = useStyles();
 
+
     return <div>
         <TableContainer component={Paper}>
-            <Table size='small' className={classes.table} aria-label="simple table">
+            <Table size='small' className={classes.table} aria-label="a dense table">
                 <TableHead>
-                    <TableRow>
-                        <TableCell>Champion</TableCell>
-                        <TableCell align="right">Level 1</TableCell>
-                        <TableCell align="right">Level 2</TableCell>
-                        <TableCell align="right">Level 3</TableCell>
-                        <TableCell align="right">Level 4</TableCell>
-                        <TableCell align="right">Level 5</TableCell>
-                        <TableCell align="right">Level 6</TableCell>
-                        <TableCell align="right">Level 7</TableCell>
-                        <TableCell align="right">Level 8</TableCell>
-                        <TableCell align="right">Level 9</TableCell>
+                    <TableRow >
+                        <TableCell className={classes.table}>Champion</TableCell>
+                        <TableCell align="right"  className={classes.table}>Level 1</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 2</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 3</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 4</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 5</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 6</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 7</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 8</TableCell>
+                        <TableCell align="right" className={classes.table}>Level 9</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -59,15 +69,15 @@ const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
                                 <div className='champName'>{champion.champion}</div>
                                 </Button>
                                 </TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_1)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_2)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_3)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_4)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_5)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_6)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_7)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_8)}</TableCell>
-                                <TableCell align="right">{convertNumber(champion.level_9)}</TableCell>
+                                <TableCell className={champion.level_1 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_1)}</TableCell>
+                                <TableCell className={champion.level_2 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_2)}</TableCell>
+                                <TableCell  className={champion.level_3 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_3)}</TableCell>
+                                <TableCell className={champion.level_4 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_4)}</TableCell>
+                                <TableCell className={champion.level_5 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_5)}</TableCell>
+                                <TableCell className={champion.level_6 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_6)}</TableCell>
+                                <TableCell className={champion.level_7 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_7)}</TableCell>
+                                <TableCell className={champion.level_8 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_8)}</TableCell>
+                                <TableCell  className={champion.level_9 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_9)}</TableCell>
                                 
                         </TableRow>
                     ))}

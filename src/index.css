@@ -19,3 +19,11 @@ h3 {
 form {
 	margin-top: auto;
 }
+
+.MuiTableCell-head {
+	font-weight: bold;
+}
+
+.searchbar-area {
+	display: flex;
+}

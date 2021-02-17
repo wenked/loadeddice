@@ -49,8 +49,9 @@ const onChangeHandler = ( event: React.ChangeEvent<{}>, newValue:String | null)=
 };
 
   return (
-    <div>
+    <div className='table-area'>
      <form onSubmit={handleChange}>
+	<div className='searchbar-area'>
      <Autocomplete
 						onChange={onChangeHandler}
 						value={champs}
@@ -68,7 +69,8 @@ const onChangeHandler = ( event: React.ChangeEvent<{}>, newValue:String | null)=
 							/>
 						)}
 					/>
-          <Button type='submit'>Search</Button>
+          <Button type='submit' variant='text'>Search</Button>
+		</div>
      </form>
 
 
