@@ -21,14 +21,33 @@ const useStyles = makeStyles({
     root:{
         color:'#4caf50'
     },
-    teste: {
+     low: {
         color:'#ff5722'
+    },
+    medium: {
+        color :'#cddc39',
+    },
+    high: {
+        color:'#4caf50'
     },
     table: {
       fontWeight:'bold',
     },
   
   });
+
+const getColor = (colorClass:Record<"root" | "medium" | "table" | "low" | "high", string>
+,odd:Number) => {
+
+    if(odd <= 0.05) {
+        return colorClass.low
+    }
+    if(odd > 0.05 && odd <= 0.1) {
+        return colorClass.medium
+    }
+
+    return colorClass.high
+}
 
 
 
@@ -69,15 +88,15 @@ const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
                                 <div className='champName'>{champion.champion}</div>
                                 </Button>
                                 </TableCell>
-                                <TableCell className={champion.level_1 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_1)}</TableCell>
-                                <TableCell className={champion.level_2 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_2)}</TableCell>
-                                <TableCell  className={champion.level_3 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_3)}</TableCell>
-                                <TableCell className={champion.level_4 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_4)}</TableCell>
-                                <TableCell className={champion.level_5 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_5)}</TableCell>
-                                <TableCell className={champion.level_6 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_6)}</TableCell>
-                                <TableCell className={champion.level_7 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_7)}</TableCell>
-                                <TableCell className={champion.level_8 >= 0.1 ? classes.root : classes.teste}align="right">{convertNumber(champion.level_8)}</TableCell>
-                                <TableCell  className={champion.level_9 >= 0.1 ? classes.root : classes.teste} align="right">{convertNumber(champion.level_9)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_1)} align="right">{convertNumber(champion.level_1)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_2)}align="right">{convertNumber(champion.level_2)}</TableCell>
+                                <TableCell  className={getColor(classes,champion.level_3)}align="right">{convertNumber(champion.level_3)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_4)} align="right">{convertNumber(champion.level_4)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_5)}align="right">{convertNumber(champion.level_5)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_6)}align="right">{convertNumber(champion.level_6)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_7)} align="right">{convertNumber(champion.level_7)}</TableCell>
+                                <TableCell className={getColor(classes,champion.level_8)}align="right">{convertNumber(champion.level_8)}</TableCell>
+                                <TableCell  className={getColor(classes,champion.level_9)} align="right">{convertNumber(champion.level_9)}</TableCell>
                                 
                         </TableRow>
                     ))}
