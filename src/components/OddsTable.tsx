@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { getOddsOfDesiredChamps, loadedDiceOdds } from '../utils/getOdds';
-import Paper from '@material-ui/core/Paper';
+//import Paper from '@material-ui/core/Paper';
 import './OddsTable.css'
 import { Button } from '@material-ui/core';
 import {getColor,convertNumber} from '../utils/utilityFunctions'
