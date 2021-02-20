@@ -10,11 +10,7 @@ import { getOddsOfDesiredChamps, loadedDiceOdds } from '../utils/getOdds';
 import Paper from '@material-ui/core/Paper';
 import './OddsTable.css'
 import { Button } from '@material-ui/core';
-
-
-const convertNumber = (num:Number) => {
-    return `${((Number(num) * 100).toFixed(1))}%`
-}
+import {getColor,convertNumber} from '../utils/utilityFunctions'
 
 
 const useStyles = makeStyles({
@@ -32,22 +28,15 @@ const useStyles = makeStyles({
     },
     table: {
       fontWeight:'bold',
+      backgroundColor:' #rgb(36, 47, 64)',
+      color:"#d8d4cf"
+      
     },
-  
+    customButton : {
+        color:"#d0cfcf"
+    }
+   
   });
-
-const getColor = (colorClass:Record<"root" | "medium" | "table" | "low" | "high", string>
-,odd:Number) => {
-
-    if(odd <= 0.05) {
-        return colorClass.low
-    }
-    if(odd > 0.05 && odd <= 0.1) {
-        return colorClass.medium
-    }
-
-    return colorClass.high
-}
 
 
 
@@ -63,7 +52,7 @@ const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
 
 
     return <div>
-        <TableContainer component={Paper}>
+        <TableContainer  >
             <Table size='small' className={classes.table} aria-label="a dense table">
                 <TableHead>
                     <TableRow >
@@ -83,7 +72,7 @@ const OddsTable:React.FC<oddsTableProps> = ({odds,setOdds}) => {
                     {odds.map((champion,i) => (
                         <TableRow key={i}>
                               <TableCell component="th" scope="row">
-                              <Button variant='text' onClick={() =>setOdds(getOddsOfDesiredChamps(champion.champion)) }>
+                              <Button className={classes.customButton} variant='text' onClick={() =>setOdds(getOddsOfDesiredChamps(champion.champion)) }>
                                 <img src={`https://rerollcdn.com/characters/Skin/4.5/${champion.champion.replace(/\s/g, '')}.png`}alt='champion icon'/>
                                 <div className='champName'>{champion.champion}</div>
                                 </Button>

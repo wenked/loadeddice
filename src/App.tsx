@@ -6,6 +6,7 @@ import { Autocomplete } from '@material-ui/lab';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import OddsTable from './components/OddsTable';
+import './App.css'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -16,8 +17,18 @@ const useStyles = makeStyles((theme: Theme) =>
 				[theme.breakpoints.down('sm')]: {
 					width: 300,
 				},
-			},
+				color:'#d0cfcf'
+			
+			},	
+			
 		},
+		
+		button: {
+			fontWeight:'bold',
+			color:"#d0cfcf"
+			
+		}
+		
 	})
 );
 
@@ -62,14 +73,14 @@ const onChangeHandler = ( event: React.ChangeEvent<{}>, newValue:String | null)=
 							<TextField
 								{...params}
 								className={classes.root}
-								label='Search your item'
+								label='Search your champion'
 								variant='outlined'
 								type='search'
 								autoFocus
 							/>
 						)}
 					/>
-          <Button type='submit' variant='text'>Search</Button>
+          <Button className={classes.button} type='submit' variant='text'>Search</Button>
 		</div>
      </form>
 
